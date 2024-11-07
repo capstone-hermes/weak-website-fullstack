@@ -1,3 +1,6 @@
 [submodule "client"]
 	path = client
 	url = git@github.com:capstone-hermes/weak-website-frontend.git
+[submodule "server"]
+	path = server
+	url = git@github.com:capstone-hermes/weak-website-backend.git
