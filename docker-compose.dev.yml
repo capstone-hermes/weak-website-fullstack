@@ -1,0 +1,27 @@
+services:
+  db:
+    volumes:
+      - mysql-data:/var/lib/mysql
+
+  server:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./server/src:/usr/src/app/src
+
+  client:
+    build:
+      context: ./client
+      dockerfile: Dockerfile
+    environment:
+      - VITE_CLIENT_PORT=${CLIENT_PORT}
+      - VITE_SERVER_URL=${SERVER_URL}
+    ports:
+      - "8081:8081"
+    depends_on:
+      - server
+    networks:
+      - app-network
